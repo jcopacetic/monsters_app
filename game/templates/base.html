@@ -76,6 +76,11 @@
     {% endblock body %}
     {% block modal %}
     {% endblock modal %}
+    <script>
+      document.body.addEventListener("htmx:configRequest", (event) => {
+        event.detail.headers['X-CSRFToken'] = '{{ csrf_token }}';
+      });
+    </script>
     {% block inline_javascript %}
     {% endblock inline_javascript %}
   </body>

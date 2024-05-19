@@ -1,0 +1,32 @@
+{% extends "./dashboard.html" %}
+
+{% block panel %}
+  <div class="wallet-balance card text-center">
+    <div class="card-header">Balance</div>
+    <div class="card-body">
+      <p class="display-2">{{ wallet.balance }}</p>
+    </div>
+    <div class="card-footer text-body-secondary">
+      <a href="#">store</a>
+    </div>
+  </div>
+  <h2 class="mt-4 mb-2">Ledger</h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+        <th scope="col">Amount</th>
+        <th scope="col">Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for transaction in wallet.ledger.items.all %}
+        <tr>
+          <td>{{ transaction.type }}</td>
+          <td>{{ transaction.amount }}</td>
+          <td>{{ transaction.created_at }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock panel %}

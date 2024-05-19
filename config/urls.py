@@ -21,6 +21,7 @@ urlpatterns = [
     path("users/", include("game.users.urls", namespace="users")),
     path("accounts/", include("allauth.urls")),
     # Your stuff: custom urls includes go here
+    path("dashboard/", include("game.dashboards.urls")),
     # ...
     # Media files
     *static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT),
