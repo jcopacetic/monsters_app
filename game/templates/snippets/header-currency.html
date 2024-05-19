@@ -1,0 +1,13 @@
+<div id="header-currency" class="header-user-info">
+  <span class="{{ transaction_type }} badge rounded-pill me-3"
+        data-prev="{{ original_balance }}"
+        data-new="{{ new_balance }}">
+    <i class="fa-solid fa-coins"></i>
+    {% if new_balance %}
+      {{ new_balance }}
+    {% else %}
+      {{ user.dashboard.wallet.balance }}
+    {% endif %}
+    gp
+  </span>
+</div>

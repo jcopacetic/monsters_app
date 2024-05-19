@@ -36,3 +36,17 @@ def clear_notification_indicator(request):
     }
 
     return render(request, "snippets/notification-indicator.html", context)
+
+
+## HTMX ANNOUNCEMENT ENDPOINTS
+def clear_announcement_indicator(request):
+    unread_announcements = request.user.dashboard.announcements.filter(read=False)
+    for announcement in unread_announcements:
+        announcement.read = True
+        announcement.save()
+
+    context = {
+        "user": request.user,
+    }
+
+    return render(request, "snippets/announcement-indicator.html", context)
