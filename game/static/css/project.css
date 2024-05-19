@@ -123,3 +123,14 @@
       background-color: var(--bs-secondary); /* Change this to your initial background color */
   }
 }
+
+
+.card-group .card.item-card {
+  max-width: 210px;
+  border: 1px solid var(--bs-dark);
+  border-left: 1px solid var(--bs-dark);
+}
+
+.card-group .card.item-card img {
+  border-radius: 8px 8px 8px 8px !important;
+}
