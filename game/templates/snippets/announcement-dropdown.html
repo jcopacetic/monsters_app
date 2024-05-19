@@ -1,27 +1,31 @@
-<div id="dashboard-notifications" class="alerts-dropdown dropdown me-4">
+<div id="dashboard-announcements" class="alerts-dropdown dropdown me-2">
   <a href="#"
-     hx-post="{% url 'dashboards:read-notifs' %}"
+     hx-post="{% url 'dashboards:read-announce' %}"
      hx-swap="innerHTML"
      hx-trigger="click"
-     hx-target="#notification-indicator"
+     hx-target="#announcement-indicator"
      class="d-flex align-items-center text-decoration-none dropdown-toggle"
      id="alertsDropdown"
      data-bs-toggle="dropdown"
      aria-expanded="false">
-    <i class="fas fa-bell fa-lg"></i>
-    {% include "snippets/notification-indicator.html" with user=user %}
+    <i class="fa-regular fa-envelope"></i>
+    {% include "snippets/announcement-indicator.html" with user=user %}
   </a>
   <ul class="dropdown-menu dropdown-menu-end"
       aria-labelledby="alertsDropdown">
-    {% for notification in user.dashboard.notifications.all %}
+    {% for announcement in user.dashboard.announcements.all %}
       <li>
         <a class="dropdown-item" href="#">
           <div class="card">
             <div class="card-body">
               <div class="card-header">
-                <h6 class="{% if not notification.read %}fw-bold {% endif %}card-title">{{ notification.title }}</h6>
+                <h6 class="{% if not announcement.read %}fw-bold {% endif %}card-title">
+                  {{ announcement.base_announcement.title }}
+                </h6>
               </div>
-              <p class="{% if not notification.read %}fw-bold {% endif %}card-text">{{ notification.description }}</p>
+              <p class="{% if not announcement.read %}fw-bold {% endif %}card-text">
+                {{ announcement.base_announcement.description }}
+              </p>
             </div>
           </div>
         </a>

@@ -70,3 +70,56 @@
 .wallet-balance {
   max-width: 400px;
 }
+
+
+#header-user-info a {
+  display: block !important;
+}
+
+#header-currency .badge {
+  background: var(--bs-secondary);
+}
+
+#header-currency .badge.credit {
+  background: var(--bs-secondary);
+  animation: fadeGreenToInitial 1.4s forwards;
+}
+
+@-webkit-keyframes fadeGreenToInitial {
+  0% {
+      background-color: green;
+  }
+  100% {
+      background-color: var(--bs-secondary); /* Change this to your initial background color */
+  }
+}
+@keyframes fadeGreenToInitial {
+  0% {
+      background-color: green;
+  }
+  100% {
+      background-color: var(--bs-secondary); /* Change this to your initial background color */
+  }
+}
+
+#header-currency .badge.debit {
+  background: var(--bs-secondary);
+  animation: fadeRedToInitial 1.4s forwards;
+}
+
+@-webkit-keyframes fadeRedToInitial {
+  0% {
+      background-color: red;
+  }
+  100% {
+      background-color: var(--bs-secondary); /* Change this to your initial background color */
+  }
+}
+@keyframes fadeRedToInitial {
+  0% {
+      background-color: red;
+  }
+  100% {
+      background-color: var(--bs-secondary); /* Change this to your initial background color */
+  }
+}
