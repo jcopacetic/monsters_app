@@ -1,6 +1,6 @@
 {% load i18n %}
 
-<nav class="navbar navbar-expand-lg bg-dark"  data-bs-theme="dark">
+<nav class="navbar navbar-expand-sm bg-dark"  data-bs-theme="dark">
   <div class="container-fluid">
     <a class="navbar-brand text-light" href="#">Monster Catcher</a>
     <button class="navbar-toggler"
@@ -30,34 +30,10 @@
       {% if user.is_authenticated %}
         <div class="header-user-info">
           <span class="badge rounded-pill text-bg-secondary me-3">
-            <i class="fa-solid fa-coins"></i> 12,000 gp
+            <i class="fa-solid fa-coins"></i> {{ user.dashboard.wallet.balance }} gp
           </span>
         </div>
-        <div class="alerts-dropdown dropdown me-4">
-          <a href="#"
-             class="d-flex align-items-center text-decoration-none dropdown-toggle"
-             id="alertsDropdown"
-             data-bs-toggle="dropdown"
-             aria-expanded="false">
-            <i class="fas fa-bell fa-lg"></i>
-            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-              99+
-              <span class="visually-hidden">unread messages</span>
-            </span>
-          </a>
-          <ul class="dropdown-menu dropdown-menu-end"
-              aria-labelledby="alertsDropdown">
-            <li>
-              <a class="dropdown-item" href="#">No new alerts</a>
-            </li>
-            <li>
-              <hr class="dropdown-divider" />
-            </li>
-            <li>
-              <a class="dropdown-item" href="#">View all alerts</a>
-            </li>
-          </ul>
-        </div>
+        {% include "snippets/alerts-dropdown.html" with user=user %}
         <div class="dropdown">
           <a href="#"
              class="d-flex align-items-center text-decoration-none dropdown-toggle"
@@ -67,7 +43,7 @@
             <div class="avatar-circle">
               <img src="https://via.placeholder.com/40" alt="User Avatar" />
             </div>
-            <span class="ms-2">Username</span>
+            <span class="ms-2">{{ user.username }}</span>
           </a>
           <ul class="dropdown-menu dropdown-menu-end"
               aria-labelledby="userMenuLink">
