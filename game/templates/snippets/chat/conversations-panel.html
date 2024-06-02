@@ -1,0 +1,58 @@
+{% load chat_tags %}
+
+<div id="chatbar-conversations"
+     class="chatbar-conversations d-flex align-items-end"
+     hx-swap-oob="true">
+  {% for conversation in open_conversations %}
+    {% chat_minimized_check conversation request.user.dashboard as is_minimized %}
+    <div id="chatbar-conv-1"
+         class="{% if is_minimized %}minimized {% endif %}chatbar-conversation">
+      <div class="conv-title d-flex  justify-content-between align-items-center">
+        <div class="chat-list-avatar">
+          <img src="https://variety.com/wp-content/uploads/2023/05/spider-2.jpg?w=1000"
+               alt="#" />
+        </div>
+        <div class="col chat-list-info">
+          <div class="d-flex justify-content-between">
+            <h5>{% chat_name conversation request.user %}</h5>
+            <p>{% chat_time conversation.message.last %}</p>
+            <span>
+              <a href="#"
+                 hx-post="{% url 'messaging:mini-chat' conversation_slug=conversation.slug %}"
+                 hx-trigger="click"
+                 hx-swap="outerHTML">
+                <i class="fa-solid fa-minus"></i>
+              </a>
+              <a href="#"
+                 hx-delete="{% url 'messaging:open-chat' conversation_slug=conversation.slug %}"
+                 hx-trigger="click"
+                 hx-swap="outerHTML"><i class="fa-solid fa-square-xmark"></i></a>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div id="chat-messages-ws-{{ conversation.slug }}"
+           hx-ext="ws"
+           ws-connect="/ws/chat/{{ conversation.slug }}/"
+           hx-swap="beforeend"
+           hx-target="#messages-{{ conversation.slug }}">
+        {% include "snippets/chat/messages-box.html" with user=user conversation=conversation messages=conversation.messages.all %}
+      </div>
+      <div id="chatbar-form-1" class="chatbar-form">
+        <form id="convo-form-{{ conversation.slug }}"
+              hx-post="{% url 'messaging:chat-input' conversation_slug=conversation.slug %}"
+              hx-trigger="submit"
+              hx-swap="none"
+              class="chat-form d-flex">
+          <textarea name="chat-input"
+                    class="col"
+                    placeholder="enter message..."
+                    hx-trigger="keydown.enter"></textarea>
+          <button class="btn btn-primary" type="submit">
+            <i class="fa-solid fa-paper-plane"></i>
+          </button>
+        </form>
+      </div>
+    </div>
+  {% endfor %}
+</div>

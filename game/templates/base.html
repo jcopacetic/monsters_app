@@ -73,12 +73,40 @@
           {% endblock main %}
         </div>
       </div>
+      {% if request.user.is_authenticated %}
+        {% include 'snippets/chatbar.html' with user=request.user conversations=request.user.dashboard.get_conversations open_conversations=request.user.dashboard.get_open_conversations show_messages=request.user.dashboard.messages_open %}
+      {% endif %}
     {% endblock body %}
     {% block modal %}
     {% endblock modal %}
     <script>
+      function scrollchats() {
+        var chatbarChats = document.querySelectorAll('.message-box');
+
+        chatbarChats.forEach(chat => {
+          chat.scrollTop = chat.scrollHeight;
+        });
+      }
+
+      window.onload = function() {
+        scrollchats();
+      };
+
       document.body.addEventListener("htmx:configRequest", (event) => {
         event.detail.headers['X-CSRFToken'] = '{{ csrf_token }}';
+      });
+
+      document.body.addEventListener('htmx:afterSwap', function(evt) {
+        let messageBox = evt.target;
+        if (messageBox.classList.contains("chat-form")) {
+          let chatBox = evt.target.closest('.chatbar-conversation');
+          let chatForm = chatBox.querySelector("form");
+          chatForm.reset();
+        }
+      });
+
+      document.body.addEventListener('htmx:oobAfterSwap', function(evt) {
+        scrollchats();
       });
     </script>
     {% block inline_javascript %}

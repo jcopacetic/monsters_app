@@ -23,6 +23,8 @@ class Dashboard(models.Model):
         related_name="dashboard",
     )
 
+    messages_open = models.BooleanField(default=False, null=True, blank=True)
+
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -37,6 +39,12 @@ class Dashboard(models.Model):
             self.created_at = timezone.now()
 
         super().save(*args, **kwargs)
+
+    def get_conversations(self):
+        return self.conversations.all()
+
+    def get_open_conversations(self):
+        return self.conversations.filter(controls__open=True, controls__owner=self)
 
 
 class Wallet(models.Model):

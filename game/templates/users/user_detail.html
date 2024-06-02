@@ -14,6 +14,13 @@
         {% if object.name %}<p>{{ object.name }}</p>{% endif %}
       </div>
     </div>
+    {% if not object == request.user %}
+      <a href="#"
+         class="btn btn-lg btn-primary start-message"
+         hx-post="{% url 'messaging:start-chat' receiver_username=object.username %}"
+         hx-trigger="click"
+         hx-swap="outerHTML"><i class="fa-solid fa-comments"></i> Start Chat</a>
+    {% endif %}
     {% if object == request.user %}
       <!-- Action buttons -->
       <div class="row">
