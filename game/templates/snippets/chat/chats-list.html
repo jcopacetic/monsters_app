@@ -1,0 +1,43 @@
+<div id="chat-list-container" hx-swap-oob="true">
+  <div class="chats-list">
+    <div class="chats-list-title d-flex justify-content-between">
+      Messages
+      <a href="#"
+         hx-post="{% url 'messaging:messages-toggle' %}"
+         hx-trigger="click"
+         hx-swap="outerHTML"
+         hx-target="closest #chatbar"
+         class="btn btn-sm btn-secondary"><i class="fa-solid fa-square-xmark"></i></a>
+    </div>
+    <ul class="chats-list-ul list-group">
+      {% if conversations|length %}
+        {% for conversation in conversations %}
+          <li hx-post="{% url 'messaging:open-chat' conversation_slug=conversation.slug %}"
+              hx-trigger="click"
+              hx-swap="outerHTML"
+              class="list-group-item d-flex rounded-6">
+            <div class="chat-list-avatar">
+              <img src="https://variety.com/wp-content/uploads/2023/05/spider-2.jpg?w=1000"
+                   alt="#" />
+            </div>
+            <div class="col chat-list-info">
+              <div class="d-flex justify-content-between">
+                <h5>{{ conversation.slug }}</h5>
+                <p>3 days ago</p>
+              </div>
+              <p>last message preview text...</p>
+            </div>
+          </li>
+        {% endfor %}
+      {% else %}
+        <li class="list-group-item d-flex rounded-6">
+          <div class="col chat-list-info">
+            <p class="text-muted text-center">
+              <em>no conversations. start one!</em>
+            </p>
+          </div>
+        </li>
+      {% endif %}
+    </ul>
+  </div>
+</div>

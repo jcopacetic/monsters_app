@@ -1,0 +1,17 @@
+<div id="chatbar" class="chatbar">
+  <div class="chatbar-wrapper d-flex align-items-end">
+    {% if show_messages %}
+      {% include "snippets/chat/conversations-panel.html" with open_conversations=open_conversations %}
+      {% include "snippets/chat/chats-list.html" with conversations=conversations %}
+    {% else %}
+      <a id="minimized-messages-btn"
+         href="#"
+         hx-post="{% url 'messaging:messages-toggle' %}"
+         hx-swap="outerHTML"
+         hx-trigger="click"
+         hx-target="closest #chatbar">
+        <i class="fa-solid fa-comments"></i>
+      </a>
+    {% endif %}
+  </div>
+</div>

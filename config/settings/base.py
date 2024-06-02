@@ -87,6 +87,7 @@ LOCAL_APPS = [
     "game.management",
     "game.items",
     "game.sets",
+    "game.messaging",
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS

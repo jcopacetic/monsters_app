@@ -1,0 +1,5 @@
+<div id="messages-{{ conversation.slug }}" class="message-box">
+  {% for message in messages %}
+    {% include "snippets/chat/message.html" with user=user message=message %}
+  {% endfor %}
+</div>

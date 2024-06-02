@@ -12,6 +12,186 @@
   border-color: #eed3d7;
 }
 
+/****
+Start ChatBar CSS
+****/
+
+#chatbar {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  left: auto;
+  z-index: 9000;
+}
+
+
+#chatbar .chats-list {
+  background: var(--bs-secondary);
+  padding: 2px;
+  border-radius: 8px;
+  width: 250px;
+}
+
+#chatbar .chats-list .chats-list-ul {
+  min-height: 300px;
+  max-height: 300px;
+  overflow-y: scroll;
+}
+
+#chatbar .chats-list .chats-list-ul li.list-group-item {
+  padding: 8px;
+  margin-bottom: 2px;
+  cursor: pointer;
+}
+
+#chatbar .chats-list .chats-list-ul li.list-group-item:hover {
+  background: #eee;
+}
+
+#chatbar .chats-list-title {
+  background: var(--bs-primary);
+  color: var(--bs-light);
+  padding: 4px 8px;
+  margin-bottom: 2px;
+  border-radius: 8px;
+}
+
+#chatbar .chat-list-avatar {
+  height: 42px;
+  width: 42px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 50%;
+  margin-right: 8px;
+}
+
+#chatbar .chat-list-avatar img {
+  position: absolute;
+  display: block;
+  top: 50%;
+  left: 50%;
+  width: 180%;
+  transform: translate(-50%, -50%);
+  -wekbit-transform: translate(-50%, -50%);
+}
+
+#chatbar .chats-list .chat-list-info {
+  margin-left: 8px;
+}
+
+#chatbar .chats-list h5 {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 700;
+  margin-right: 8px;
+}
+
+#chatbar .chats-list p {
+  margin: 0 !important;
+  font-size: 12px;
+  font-weight: 400;
+}
+
+#chatbar .chatbar-conversation {
+  background: var(--bs-secondary);
+  width: 250px;
+  padding: 3px;
+  margin-right: 8px;
+  border-radius: 8px;
+}
+
+#chatbar .chatbar-conversation .message-box {
+  background: var(--bs-dark);
+  min-height: 300px;
+  max-height: 300px;
+  overflow-y: scroll;
+  border-radius: 8px;
+  margin-bottom: 2px;
+}
+
+#chatbar .chatbar-conversation .message-box .chat-message {
+  font-size: 14px;
+  line-height: 1.4;
+  margin-top: 20px;
+  color: var(--bs-light);
+  margin-left: 12px;
+  margin-right: 12px;
+}
+
+#chatbar .chatbar-conversation .message-box .chat-message > span {
+  font-size: 14px;
+}
+
+#chatbar .chatbar-conversation .message-box .chat-message .chat-message-wrapper {
+  margin-top: 4px;
+  margin-bottom: 12px;
+  padding: 8px;
+  border-radius: 8px;
+}
+
+#chatbar .chatbar-conversation .message-box .chat-message.received .chat-message-wrapper {
+  background: var(--bs-secondary);
+}
+
+
+#chatbar .chatbar-conversation .message-box .chat-message.sent .chat-message-wrapper {
+  background: var(--bs-primary);
+}
+
+#chatbar .chatbar-conversation .conv-title {
+  background: var(--bs-light);
+  padding: 4px 4px;
+  margin-bottom: 2px;
+  border-radius: 8px;
+}
+
+#chatbar .chatbar-conversation .conv-title .chat-list-avatar {
+  height: 28px;
+  width: 28px;
+}
+
+#chatbar .chatbar-conversation .conv-title h5 {
+  font-size: 12px;
+  font-weight: 700;
+  margin-bottom: 0;
+}
+
+#chatbar .chatbar-conversation .conv-title p {
+  font-size: 10px;
+  font-weight: 300;
+  margin-bottom: 0;
+}
+
+#chatbar .chatbar-form textarea {
+  padding: 4px;
+  display: block;
+  width: 100%;
+  border-radius: 8px;
+}
+
+
+#chatbar .chatbar-conversation.minimized .message-box,
+#chatbar .chatbar-conversation.minimized .chatbar-form {
+  display: none;
+}
+
+#minimized-messages-btn {
+  display: block;
+  height: 80px;
+  width: 80px;
+  background: var(--bs-primary);
+  color: var(--bs-light);
+  padding: 16px 12px;
+  border-radius: 40px;
+  font-size: 30px;
+  text-align: center;
+}
+/****
+End ChatBar CSS
+****/
+
+
+
 #site-main {
   position: relative;
   height: calc(100vh - 56px);

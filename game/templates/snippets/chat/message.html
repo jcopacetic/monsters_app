@@ -1,0 +1,7 @@
+<div id="message-{{ message.slug }}"
+     class="chat-message {% if message.sender == user.dashboard or message_context == 'sender' %}sent{% else %}received{% endif %}">
+  <span><small>{{ message.created_at }}</small></span>
+  <div class="chat-message-wrapper">
+    <p>{{ message.message }}</p>
+  </div>
+</div>
